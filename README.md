@@ -1,24 +1,53 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# テーブル設計
 
-Things you may want to cover:
+## users テーブル
 
-* Ruby version
+| Column          | Type       | Options                       |
+| --------------- | ---------- | ----------------------------- |
+| nickname        | string     | null: false                   |
+| email           | string     | null: false                   |
+| password        | integer    | null: false                   |
+| family_name     | string     | null: false                   |
+| first_name      | string     | null: false                   |
+| family_name_kana| string     | null: false                   |
+| first_name_kana | string     | null: false                   |
+| birth_day       | references | null: false, foreign_key: true|
+| id              | string     | null: false, foreign_key: true|
 
-* System dependencies
 
-* Configuration
 
-* Database creation
 
-* Database initialization
+## items テーブル
 
-* How to run the test suite
+| Column     | Type       | Options                       |
+| ---------- | ---------- | ----------------------------- |
+| name       | string     | null: false                   |
+| price      | integer    | null: false                   |
+| category   | references | null: false, foreign_key: true|
+| image      | string     | null: false                   |
+| prefecture | string     | null: false                   |
+| condition  | string     | null: false                   |
+| user       | references | null: false, foreign_key: true|
 
-* Services (job queues, cache servers, search engines, etc.)
+## items_purchase テーブル
 
-* Deployment instructions
+| Column    | Type       | Options                        |
+| --------- | ---------- | ------------------------------ |
+| items     | references | null: false, foreign_key: true |
+| purchase  | references | null: false, foreign_key: true |
 
-* ...
+## purchase テーブル
+
+| Column       | Type       | Options                        |
+| ------------ | ---------- | ------------------------------ |
+| password     | integer    | null: false                    |
+| user         | references | null: false, foreign_key: true |
+| post_cord    | integer    | null: false,                   |
+| prefecture   | string     | null: false                    |
+| city         | string     | null: false                    |
+| address      | string     | null: false                    |
+| room_number  | string     | null: false                    |
+| phone_number | integer    | null: false,                   |
+| orders       | references | null: false, foreign_key: true |
