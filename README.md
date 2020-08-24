@@ -4,16 +4,16 @@
 
 ## users テーブル
 
-| Column          | Type       | Options                       |
-| --------------- | ---------- | ----------------------------- |
-| nickname        | string     | null: false                   |
-| email           | string     | null: false                   |
-| password        | string     | null: false                   |
-| family_name     | string     | null: false                   |
-| first_name      | string     | null: false                   |
-| family_name_kana| string     | null: false                   |
-| first_name_kana | string     | null: false                   |
-| birth_day       | date       | null: false, foreign_key: true|
+| Column          | Type       | Options     |
+| --------------- | ---------- | ----------- |
+| nickname        | string     | null: false |
+| email           | string     | null: false |
+| password        | string     | null: false |
+| family_name     | string     | null: false |
+| first_name      | string     | null: false |
+| family_name_kana| string     | null: false |
+| first_name_kana | string     | null: false |
+| birth_day       | date       | null: false |
 
 ### Association
 
@@ -53,22 +53,25 @@
 
 - belongs_to :item
 - belongs_to :purchase
+- belongs_to :user
 
 
 ## purchases テーブル
 
 | Column       | Type       | Options                        |
 | ------------ | ---------- | ------------------------------ |
-| prefecture   | integer     | null: false                   |
+| post_cord    | string     | null: false                    |
+| prefecture   | integer    | null: false                   |
 | city         | string     | null: false                    |
 | address      | string     | null: false                    |
 | room_number  | string     | null: false                    |
 | phone_number | string     | null: false,                   |
 | order        | references | null: false, foreign_key: true |
 
+
 ### Association
 
 - belongs_to :user
 - belongs_to :item
-- has_one :item through: item_purchase
+- has_one :item 
 
