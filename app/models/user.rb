@@ -4,13 +4,18 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :nickname, presence: true
-  validates :email, presence: true
+
+  VALID_EMAIL_REGAX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGAX }
   validates :password, {presence: true, length: {minimum: 6}}
+  validates :password, confirmation: true
   validates :birth_day, presence: true
 
   with_options presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/, message: '全角文字を使用してください' } do
     validates :family_name
     validates :first_name
+  end
+  with_options presence: true, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力してください'} do
     validates :family_name_kana
     validates :first_name_kana
   end
