@@ -4,7 +4,14 @@ class UsersController < ApplicationController
     redirect_to :action => 'new'
   end
 
-  def new
+  def create
+    @user = User.all
+    if @user.save
+      redirect_to @user
+    else
+      render 'new'
+    end
   end
 
+  
 end
