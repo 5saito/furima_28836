@@ -18,7 +18,7 @@
 ### Association
 
 - has_many :items through: items_purchases
-- has_many :purchases
+<!-- - has_many :purchases -->
 - has_many :items_purchases
 
 
@@ -39,7 +39,7 @@
 
 ### Association
 - belongs_to :user
-- has_one :purchase
+- has_one :items_purchase
 
 
 ## items_purchases テーブル
@@ -47,12 +47,12 @@
 | Column    | Type       | Options                        |
 | --------- | ---------- | ------------------------------ |
 | item      | references | null: false, foreign_key: true |
-| purchase  | references | null: false, foreign_key: true |
+| user      | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :item
-- belongs_to :purchase
+- has_one :purchase
 - belongs_to :user
 
 
@@ -66,12 +66,12 @@
 | address      | string     | null: false                    |
 | room_number  | string     | null: false                    |
 | phone_number | string     | null: false,                   |
-| order        | references | null: false, foreign_key: true |
+| items_purchase  | references | null: false, foreign_key: true |
 
 
 ### Association
-
-- belongs_to :user
+- belongs_to : items_purchase
+<!-- - belongs_to :user
 - belongs_to :item
-- has_one :item 
+- has_one :item  -->
 
