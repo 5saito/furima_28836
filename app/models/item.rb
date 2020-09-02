@@ -1,10 +1,12 @@
 class Item < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+
   belongs_to :user
   has_one :items_purchase
 
   with_options presence: true do
-    validates :name
-    validates :text
+    validates :name, length: {maximum: 40}
+    validates :text, length: {maximum:1000}
     validates :price
     validates :category
     validates :image
