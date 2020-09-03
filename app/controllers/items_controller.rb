@@ -8,8 +8,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(items_params)
-    # @item.valid?を使って条件分岐をする。成功したときはsaveそうでないときはnewにレンダーする
-    # モデルの extendassosiationの記述
+
     if @item.valid?
        @item.save
       return redirect_to root_path

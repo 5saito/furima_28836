@@ -14,10 +14,6 @@ describe User do
       it "名前、商品説明、価格、カテゴリー、画像、配送地域、状態、配送料金、配送日数が存在すれば、出品できる" do
         expect(@item).to be_valid
       end
-      it "価格は半角数字で入力する" do
-        @item.price = /\A[0-9]+\z/
-        expect(@item).to be_valid
-      end
     end
 
     context "商品出品できない時" do
