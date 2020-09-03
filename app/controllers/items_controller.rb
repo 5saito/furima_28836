@@ -1,6 +1,9 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @item = Item.all
+  end
   
   def new
     @item = Item.new
@@ -23,3 +26,5 @@ class ItemsController < ApplicationController
     :prefecture, :condition, :days, :delivery_fee, :user).merge(user_id: current_user.id)
   end
 end
+
+
