@@ -1,6 +1,10 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-
+  belongs_to_active_hash :category
+  belongs_to_active_hash :prefecture
+  belongs_to_active_hash :condition
+  belongs_to_active_hash :days
+  belongs_to_active_hash :delivery_fee
 
   belongs_to :user
   has_one :items_purchase
@@ -15,11 +19,11 @@ class Item < ApplicationRecord
   end
 
  with_options numericality: { other_than: 1,message: "Select" } do
-    validates :category
-    validates :prefecture
-    validates :condition
-    validates :days
-    validates :delivery_fee
+    validates :category_id
+    validates :prefecture_id
+    validates :condition_id
+    validates :days_id
+    validates :delivery_fee_id
  end
 
 end
