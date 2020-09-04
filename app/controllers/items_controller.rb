@@ -1,11 +1,6 @@
 class ItemsController < ApplicationController
-<<<<<<< Updated upstream
   
   skip_before_action  :authenticate_user!, only: [:index]
-=======
-  before_action :authenticate_user!
-  # before_action :move_to_index, except: [:index, :show, :search]
->>>>>>> Stashed changes
   
   def index
     @item = Item.all.order("created_at DESC")
