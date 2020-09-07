@@ -41,11 +41,12 @@ class ItemsController < ApplicationController
     end
 
     def destroy
-      set_item
       if @item.user_id == current_user.id
         @item.destroy
+        redirect_to root_path
+      else
+        redirect_to action: :edit
       end
-      redirect_to root_path
     end
 
   private
