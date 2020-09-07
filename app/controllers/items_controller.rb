@@ -40,6 +40,15 @@ class ItemsController < ApplicationController
       end
     end
 
+    def destroy
+      # binding.pry
+      @item = Item.find(params[:id])
+      if @item.user_id == current_user.id
+        @item.destroy
+      end
+      redirect_to root_path
+    end
+
   private
   def items_params
     params.require(:item).permit(:text, :name, :image, :price, :category_id, 
