@@ -1,5 +1,5 @@
 class Purchase < ApplicationRecord
-  belongs_to : items_purchase
+  belongs_to :items_purchase
 
 
 end
