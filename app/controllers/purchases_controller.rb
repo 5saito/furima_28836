@@ -1,14 +1,17 @@
 class PurchasesController < ApplicationController
   def index
     @item = Item.find(params[:item_id])
+    
+    @purchase = ItemPurchase.new
   end
 
   def new
-    @purchase = ItemsPurchase.new
+    @purchase = ItemPurchase.new
   end
 
   def create
-    @purchase = ItemsPurchase.new(purchase_params)
+    @item = Item.find(params[:item_id])
+    @purchase = ItemPurchase.new(purchase_params)
     if  @purchase.valid?
       pay_item
       @purchase.save
@@ -21,14 +24,14 @@ class PurchasesController < ApplicationController
   private
 
   def purchase_params
-    params.require(:items_purchase).permit(:name, :text, :price, :image, :post_cord, :prefecture, :city, :address, :room_number, :phone_number, :item_purchase,:token
-    )
+    params.require(:item_purchase).permit(:post_cord, :prefecture_id, :city, :address, :room_number, :phone_number,:token
+    ).merge(user_id:current_user.id, item_id: params[:item_id])
   end
 
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
-      amount: purchase_params[:price],
+      amount: @item.price,
       card: purchase_params[:token],
       currency:'jpy'
     )
