@@ -59,12 +59,12 @@ describe User do
         expect(another_user.errors.full_messages).to include("Email has already been taken")
       end
       it "family_nameが半角の場合、登録できない" do
-        @user.family_name = 
+        @user.family_name = /\A[ｧ-ﾝﾞﾟ]+\z/
         @user.valid?
         expect(@user.errors.full_message).to include("Last name Full-width characters")
       end
       it "first_nameが半角の場合、登録できない" do
-        @user.first_name =
+        @user.first_name = /\A[ｧ-ﾝﾞﾟ]+\z/
         @user.valid?
         expect(@user.errors.full_message).to include("First name Full-width characters")
       end
@@ -79,12 +79,12 @@ describe User do
         expect(@user.errors.full_messages).to include("First name kana can't be blank")
       end
       it "family_name_kanaが全角でない場合、登録できない" do
-        @user.family_name_kana =
+        @user.family_name_kana = /\A[ぁ-んァ-ン一-龥]+\z/
         @user.valid?
         expect(@user.errors.full_message).to include("Last name kana Full-width katakana characters")
       end
       it "first_name_kanaが全角でない場合、登録できない" do
-        @user.first_name_kana =
+        @user.first_name_kana = /\A[ぁ-んァ-ン一-龥]+\z/
         @user.valid?
         expect(@user.errors.full_message).to include("First name kana Full-width katakana characters")
       end 

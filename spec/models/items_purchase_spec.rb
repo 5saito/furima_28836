@@ -60,6 +60,11 @@ describe User do
         @items_purchase.valid?
         expect(@items_purchase.errors.full_message).to include("Phone number can't be blank")
       end
+      it "電話番号が１０桁以下だと購入できない" do
+        @items_purchase.phone_number = "0000000000"
+        @items_purchase.valid?
+        expect(@items_purchase.errors.full_message).to include("Phone number is too short (minimum is 10 characters")
+      end
     end
   end
 end
