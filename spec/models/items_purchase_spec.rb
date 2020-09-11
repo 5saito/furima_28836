@@ -22,6 +22,10 @@ describe User do
         @items_purchase.phone_number = /\A\d{11}\z/
         expect(@items_purchase).to be_valid 
       end
+      it "建物名がなくても購入できる" do
+        @items_purchase.room_number = nil
+        expect(@items_purchase).to be_valid 
+      end
     end
 
     context "商品購入できない時" do

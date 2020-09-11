@@ -62,7 +62,6 @@ class ItemsController < ApplicationController
   end
   def set_item
     @item = Item.find(params[:id])
-    # params { :id => "2" }
   end
 end
 
