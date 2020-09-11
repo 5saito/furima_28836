@@ -11,19 +11,6 @@ class Item < ApplicationRecord
   has_one_attached :image
 
 
-  with_options presence: true do
-    validates :name, length: {maximum: 40}
-    validates :text, length: {maximum:1000}
-    validates :price
-    validates :image
-  end
 
- with_options numericality: { other_than: 1,message: "Select" } do
-    validates :category_id
-    validates :prefecture_id
-    validates :condition_id
-    validates :days_id
-    validates :delivery_fee_id
- end
 
 end

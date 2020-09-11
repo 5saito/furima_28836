@@ -10,7 +10,8 @@ window.addEventListener('load', function(){
        let gains = value - fee
        add_tax.textContent = fee;
        profit.textContent = gains;
-    } else {
+    }
+     else {
       let fee = '-';
       let gains = '-';
       add_tax.textContent = fee;
